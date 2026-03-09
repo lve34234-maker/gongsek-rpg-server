@@ -6,7 +6,10 @@ const { WebSocketServer } = require('ws');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors({ origin: '*' }));;
+// 이걸로 교체
+app.use(cors({ 
+  origin: (origin, cb) => cb(null, true) 
+}));
 app.use(express.json());
 
 require('./db').initDB();
